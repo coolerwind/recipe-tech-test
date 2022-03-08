@@ -22,7 +22,7 @@ mongoose
   .then(() => console.log("MongoDB Connected..."))
   .catch(err => console.log(err));
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   // Website you wish to allow to connect
   res.setHeader("Access-Control-Allow-Origin", "*");
 
@@ -52,11 +52,6 @@ app.use(function(req, res, next) {
 app.use("/api/recipes", require("./routes/api/recipes"));
 app.use("/api/users", require("./routes/api/users"));
 
-app.use(function(req, res, next) {
-  res.status(404).send("Sorry can't find that!");
-});
-
-// app.use("/static", express.static("client/src"));
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === "production") {
@@ -67,6 +62,10 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
+
+app.use(function (req, res, next) {
+  res.status(404).send("Sorry can't find that!");
+});
 
 // Listen on port
 const port = process.env.PORT || 5000;
