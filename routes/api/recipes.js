@@ -76,16 +76,6 @@ router.patch("/:id", auth, (req, res) => {
 // Update a recipe | Add Star Rating
 // access: public
 router.patch("/:id/rating", (req, res) => {
-  // Recipe.findByIdAndUpdate(req.params.id, { rating: req.body }, foundRecipe => {
-  //   if (foundRecipe) {
-  //     res.send(foundRecipe);
-  //   } else {
-  //     res
-  //       .status(400)
-  //       .json({ msg: "No recipe with the specified id was found" });
-  //   }
-  // });
-
   Recipe.update({ _id: req.params.id }, { rating: req.body }, err => {
     if (!err) {
       Recipe.findById(req.params.id, (err, foundRecipe) => {
