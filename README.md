@@ -1,1 +1,1 @@
-# Recipe App for Tech Assignment
+# Recipe App
